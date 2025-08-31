@@ -2,7 +2,7 @@ name: Build & Push (Sandra React via Pi)
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "master"] # inclui master por segurança
   workflow_dispatch: {}
 
 jobs:
