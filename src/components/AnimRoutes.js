@@ -1,20 +1,20 @@
-import React from "react";
-// import pages
-import Home from "../pages/Home";
-import About from "../pages/About";
-import Portfolio from "../pages/Portfolio";
-import Shop from "../pages/Shop";
-import Contact from "../pages/Contact";
-import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import Collaborations from "../pages/Collaborations";
-import Products from "../pages/Products";
+import React from 'react';
+import Home from '../pages/Home';
+import About from '../pages/About';
+import Portfolio from '../pages/Portfolio';
+import Shop from '../pages/Shop';
+import Contact from '../pages/Contact';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import Collaborations from '../pages/Collaborations';
+import Products from '../pages/Products';
 
 const AnimRoutes = () => {
   const location = useLocation();
+
   return (
-    <AnimatePresence initial={true} mode="wait">
-      <Routes key={location.pathname} location={location}>
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/portfolio" element={<Portfolio />} />
@@ -23,7 +23,6 @@ const AnimRoutes = () => {
         <Route path="/portfolio/collaborations" element={<Collaborations />} />
         <Route path="/shop/products" element={<Products />} />
       </Routes>
-      ;
     </AnimatePresence>
   );
 };

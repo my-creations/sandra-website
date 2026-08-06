@@ -1,49 +1,74 @@
-import React from "react";
-import SandraImg from "../img/about/sandra.jpg";
-import { motion } from "framer-motion";
-import { transition1 } from "../transitions";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SandraImg from '../img/about/sandra.jpg';
+import { motion } from 'framer-motion';
+import { transition1, fadeUp } from '../transitions';
 import { useTranslation } from 'react-i18next';
 
 const About = () => {
   const { t } = useTranslation();
+
   return (
     <motion.section
-      initial={{ opacity: 0, y: "100%" }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: "100%" }}
-      transition={{ transition1 }}
-      className="section lg:overflow-hidden relative min-h-screen lg:min-h-auto"
+      initial={fadeUp.initial}
+      animate={fadeUp.animate}
+      exit={fadeUp.exit}
+      transition={transition1}
+      className="page-shell"
     >
-      <div className="container mx-auto h-full relative">
-        {/* text & img wrapper */}
-        <div className="flex flex-col lg:flex-row h-full lg:items-center lg:justify-center text-center lg:text-left lg:pt-16 relative">
-          {/* text */}
+      <div className="container-editorial">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12 lg:pt-4">
           <motion.div
-            initial={{ opacity: 0, y: "-80%" }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-80%" }}
-            transition={{ transition1 }}
-            className="flex-1 lg:pt-0 lg:w-auto z-30 flex flex-col justify-start lg:justify-center items-center lg:items-center text-center order-1 lg:order-none pt-8 pb-8"
+            transition={{ ...transition1, delay: 0.1 }}
+            className="order-2 lg:order-1 lg:col-span-5"
           >
-            <h1 className="h1 text-pink mb-4 lg:mb-8">{t('about_me_title')}</h1>
-            <p className="mb-8 max-w-sm lg:text-lg mx-6">
-            {t('about_me_description_1')}
-            </p>
-            <p className="mb-8 max-w-sm lg:text-lg mx-6">
-            {t('about_me_description_2')}
-            </p>
-            <p className="mb-8 max-w-sm lg:text-lg mx-6 text-pink font-semibold">
-            {t('about_me_description_3')}
-            </p>
-          </motion.div>
-          {/* image */}
-          <div className="flex-1 lg:max-h-max order-2 lg:order-none">
-            <div className="relative overflow-hidden rounded-t-3xl lg:rounded-3xl w-full h-full lg:w-auto lg:h-full">
-              <img className="w-full h-full object-cover lg:w-auto lg:h-auto lg:rounded-3xl" src={SandraImg} alt="" />
-              {/* Top fade overlay for smaller devices - positioned over the image */}
-              <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white to-transparent z-10 lg:hidden"></div>
+            <div className="media-compose max-w-md lg:max-w-none">
+              <div className="frame-soft aspect-[4/5]">
+                <img
+                  src={SandraImg}
+                  alt={t('about_me_title')}
+                  className="media-fill"
+                />
+              </div>
+              <div className="mt-3 flex justify-center">
+                <span className="rounded-full bg-blush-soft px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.16em] text-cocoa">
+                  {t('category_travel')} · {t('category_lifestyle')}
+                </span>
+              </div>
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ...transition1, delay: 0.16 }}
+            className="order-1 flex flex-col items-start text-left lg:order-2 lg:col-span-7"
+          >
+            <p className="eyebrow mb-4">{t('about_eyebrow')}</p>
+            <h1 className="h1 mb-5 text-[2.85rem] sm:text-[3.5rem] lg:text-[4.5rem]">
+              {t('about_me_title')}
+            </h1>
+            <div className="divider-line mb-7 ml-0" />
+
+            <div className="space-y-5">
+              <p className="body-copy max-w-xl">{t('about_me_description_1')}</p>
+              <p className="body-copy max-w-xl">{t('about_me_description_2')}</p>
+              <p className="max-w-xl font-primary text-xl italic leading-relaxed text-blush-deep lg:text-2xl">
+                {t('about_me_description_3')}
+              </p>
+            </div>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link to="/shop/products" className="btn-primary">
+                {t('home_cta_guides')}
+              </Link>
+              <Link to="/contact" className="btn-secondary">
+                {t('contact')}
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

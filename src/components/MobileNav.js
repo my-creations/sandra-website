@@ -1,48 +1,102 @@
-import React, { useState } from 'react';
-import { IoMdClose } from 'react-icons/io'
-import { CgMenuRight } from 'react-icons/cg'
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { IoMdClose } from 'react-icons/io';
+import { CgMenuRight } from 'react-icons/cg';
+import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ChangeLanguage from './ChangeLanguage';
 
-const menuVariants = {
-  hidden: {
-    x: '100%',
-  },
-  show: {
-    x: 0,
-    transition: {
-      ease: [0.6,0.01,-0.05,0.9],
-    },
-  },
-}
-
 const MobileNav = () => {
   const { t } = useTranslation();
-  const [openMenu, setOpenMenu] = useState(false)
-  return <nav className='text-primary lg:hidden flex justify-end -mt-10'>
-    {/* nav open button */}
-    <div onClick={() => setOpenMenu(true)} className='text-green text-3xl cursor-pointer -mt-5'>
-      <CgMenuRight/>
-    </div>
-    {/* menu */}
-    <motion.div variants={menuVariants} initial='hidden' animate={openMenu ? 'show' : ''} className={`bg-white shadow-2xl w-full absolute top-0 right-0 max-w-xs h-screen z-20 ${openMenu ? '' : 'hidden'}`}>
-      {/* icon */}
-      <div onClick={() => setOpenMenu(false)} className='text-3xl absolute z-30 left-4 top-14 text-green cursor-pointer mt-5'><IoMdClose/></div>
-      {/* menu list */}
-      <ul className='h-full flex flex-col justify-center items-center gap-y-8 text-primary font-primary font-bold text-3xl'>
-        <li><Link className='text-green  hover:text-pink' onClick={() => setOpenMenu(false)} to='/'>{t('home')}</Link></li>
-        <li><Link className='text-green  hover:text-pink' onClick={() => setOpenMenu(false)} to='/about'>{t('about')}</Link></li>
-        <li><Link className='text-green  hover:text-pink' onClick={() => setOpenMenu(false)} to='/portfolio'>{t('portfolio')}</Link></li>
-        <li><Link className='text-green  hover:text-pink' onClick={() => setOpenMenu(false)} to='/Shop'>{t('shop')}</Link></li>
-        <li><Link className='text-green hover:text-pink' onClick={() => setOpenMenu(false)} to='/contact'>{t('contact')}</Link></li>
-        <li>
-          <ChangeLanguage visible={true} />
-        </li>
-      </ul>
-    </motion.div>
-  </nav>;
+  const location = useLocation();
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const links = [
+    { to: '/', label: t('home') },
+    { to: '/about', label: t('about') },
+    { to: '/portfolio', label: t('portfolio') },
+    { to: '/shop', label: t('shop') },
+    { to: '/contact', label: t('contact') },
+  ];
+
+  useEffect(() => {
+    setOpenMenu(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = openMenu ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [openMenu]);
+
+  return (
+    <nav className="flex lg:hidden">
+      <button
+        type="button"
+        aria-label="Open menu"
+        onClick={() => setOpenMenu(true)}
+        className="text-3xl text-cocoa transition hover:text-blush-deep"
+      >
+        <CgMenuRight />
+      </button>
+
+      <AnimatePresence>
+        {openMenu && (
+          <>
+            <motion.button
+              type="button"
+              aria-label="Close menu overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-40 bg-cocoa-dark/25 backdrop-blur-[2px]"
+              onClick={() => setOpenMenu(false)}
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.45 }}
+              className="fixed right-0 top-0 z-50 flex h-full w-full max-w-sm flex-col bg-cream px-8 py-10 shadow-soft"
+            >
+              <div className="mb-12 flex items-center justify-between">
+                <span className="font-primary text-2xl text-cocoa-dark">
+                  {t('sandra')} {t('camilo')}
+                </span>
+                <button
+                  type="button"
+                  aria-label="Close menu"
+                  onClick={() => setOpenMenu(false)}
+                  className="text-3xl text-cocoa transition hover:text-blush-deep"
+                >
+                  <IoMdClose />
+                </button>
+              </div>
+
+              <ul className="flex flex-1 flex-col gap-y-7">
+                {links.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      onClick={() => setOpenMenu(false)}
+                      className="font-primary text-3xl text-cocoa-dark transition hover:text-blush-deep"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="border-t border-cocoa/10 pt-6">
+                <ChangeLanguage visible />
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
 };
 
 export default MobileNav;

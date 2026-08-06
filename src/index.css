@@ -7,27 +7,160 @@
   src: url('../src/fonts/Photograph\ Signature.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply overflow-visible text-primary font-secondary bg-white;
+    @apply overflow-x-hidden text-primary font-secondary bg-cream-soft antialiased;
   }
+
+  ::selection {
+    @apply bg-blush-soft text-cocoa-dark;
+  }
+
   .h1 {
-    @apply text-[70px] lg:text-[140px] font-primary leading-[120%] tracking-[-0.05em] mb-2;
-    font-family: 'PhotographSignature', sans-serif;
+    @apply font-primary font-medium text-[3.25rem] sm:text-[4.5rem] lg:text-[6.5rem] leading-[1.05] tracking-tight text-cocoa-dark;
   }
+
   .h2 {
-    @apply text-[36px] lg:text-[72px] font-primary mb-4 lg:mb-12;
+    @apply font-primary font-medium text-[2.25rem] lg:text-[3.5rem] leading-[1.1] tracking-tight text-cocoa-dark mb-4 lg:mb-8;
   }
+
   .h3 {
-    @apply text-[42px] lg:text-[84px] font-primary mb-4 lg:mb-12;
-    font-family: 'PhotographSignature', sans-serif;
+    @apply font-primary font-medium text-[1.85rem] lg:text-[2.5rem] leading-[1.15] tracking-tight text-cocoa-dark mb-3 lg:mb-6;
   }
+
+  .script-title {
+    font-family: 'PhotographSignature', cursive;
+    @apply leading-[1.05] tracking-normal;
+  }
+
   .section {
-    @apply h-screen w-screen;
+    @apply relative w-full min-h-screen;
   }
+
+  .page-shell {
+    @apply relative w-full min-h-[calc(100vh-7rem)] pb-16 pt-4 lg:pt-2;
+  }
+
+  .container-editorial {
+    @apply mx-auto w-full max-w-6xl px-6 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-secondary text-[0.7rem] sm:text-xs uppercase tracking-brand text-sage-deep font-medium;
+  }
+
+  .body-copy {
+    @apply text-base lg:text-lg leading-relaxed text-grey;
+  }
+
   .btn {
-    @apply py-[18px] px-[50px] h-[66px] flex items-center justify-center text-base uppercase font-secondary font-semibold bg-primary text-white;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm uppercase tracking-[0.16em] font-secondary font-medium transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn bg-cocoa text-cream-soft shadow-soft hover:bg-cocoa-dark hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply btn border border-cocoa/20 bg-transparent text-cocoa hover:border-cocoa hover:bg-cream;
+  }
+
+  .btn-blush {
+    @apply btn bg-blush-deep text-cream-soft shadow-soft hover:bg-cherry hover:-translate-y-0.5;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-blush/50 bg-cream-soft/80 px-4 py-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-cocoa-light backdrop-blur-sm;
+  }
+
+  .frame-soft {
+    @apply overflow-hidden rounded-[1.5rem] bg-cream-dark shadow-card;
+  }
+
+  .media-fill {
+    @apply h-full w-full object-cover object-center;
+  }
+
+  .media-grid {
+    @apply grid grid-cols-2 gap-2.5 sm:gap-3;
+  }
+
+  .media-tile {
+    @apply frame-soft aspect-[4/5];
+  }
+
+  .media-compose {
+    @apply relative mx-auto w-full max-w-xl overflow-hidden rounded-[1.75rem] bg-cream p-2.5 shadow-soft sm:p-3 lg:max-w-none;
+  }
+
+  /* Polaroid frames */
+  .polaroid {
+    @apply relative bg-white p-2.5 pb-11 shadow-polaroid transition duration-500 sm:p-3 sm:pb-12;
+  }
+
+  .polaroid-photo {
+    @apply relative overflow-hidden bg-cream-dark;
+  }
+
+  .polaroid-photo img {
+    @apply h-full w-full object-cover object-center transition duration-700;
+  }
+
+  .polaroid:hover .polaroid-photo img {
+    @apply scale-[1.03];
+  }
+
+  .polaroid-caption {
+    @apply absolute inset-x-0 bottom-0 flex h-11 items-center justify-center px-3 text-center font-primary text-sm tracking-wide text-cocoa-light sm:h-12 sm:text-base;
+  }
+
+  .polaroid-tilt-left {
+    @apply rotate-[-1.5deg] hover:rotate-[-0.5deg];
+  }
+
+  .polaroid-tilt-right {
+    @apply rotate-[1.5deg] hover:rotate-[0.5deg];
+  }
+
+  .polaroid-tilt-none {
+    @apply rotate-0;
+  }
+
+  .polaroid-board {
+    @apply rounded-[1.5rem] bg-cream/60 p-4 sm:p-6 lg:p-8;
+  }
+
+  .divider-line {
+    @apply mx-auto h-px w-16 bg-gradient-to-r from-transparent via-blush-deep to-transparent;
+  }
+
+  .nav-link {
+    @apply relative text-sm uppercase tracking-[0.18em] text-cocoa-light transition-colors duration-300 hover:text-cocoa-dark;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-blush-deep transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .input-editorial {
+    @apply w-full border-0 border-b border-cocoa/20 bg-transparent py-4 font-secondary text-primary outline-none transition placeholder:text-cocoa-light/60 focus:border-blush-deep;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

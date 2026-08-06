@@ -1,32 +1,35 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const ChangeLanguage = ({ visible }) => {
+const ChangeLanguage = ({ visible = false }) => {
   const { i18n } = useTranslation();
-  const changeLanguage = (lng) => {
+  const current = (i18n.language || 'en').slice(0, 2);
+  const visibilityClass = visible ? 'flex' : 'hidden lg:flex';
+
+  const setLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
 
-  // Determine the classes based on the `visible` prop
-  const visibilityClass = visible ? 'flex' : 'hidden lg:flex';
-
   return (
-    <div className={`${visibilityClass}`}>
-      <ul className='flex gap-x-2'>
-        <li>
-          <button onClick={() => changeLanguage('en')} className='text-green hover:text-pink transition text-xl'>EN</button>
-        </li>
-        <li className='text-green hover:text-pink transition'> | </li>
-        <li>
-          <button onClick={() => changeLanguage('pt')} className='text-green hover:text-pink transition text-xl'>PT</button>
-        </li>
-      </ul>
+    <div className={`${visibilityClass} items-center`}>
+      <div className="flex items-center gap-1 rounded-full border border-cocoa/10 bg-cream/70 p-1">
+        {['en', 'pt'].map((lng) => (
+          <button
+            key={lng}
+            type="button"
+            onClick={() => setLanguage(lng)}
+            className={`rounded-full px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] transition ${
+              current === lng
+                ? 'bg-cocoa text-cream-soft shadow-sm'
+                : 'text-cocoa-light hover:text-cocoa-dark'
+            }`}
+          >
+            {lng}
+          </button>
+        ))}
+      </div>
     </div>
   );
-};
-
-ChangeLanguage.defaultProps = {
-  visible: false, // By default, the component will be hidden on small screens
 };
 
 export default ChangeLanguage;

@@ -1,19 +1,122 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import Carousel from '../components/Carousel';
-import { transition1 } from '../transitions';
+import { transition1, fadeUp } from '../transitions';
 import Bundle1 from '../img/about/sandra.jpg';
 import Bundle2 from '../img/about/sandra.jpg';
-import Guide1 from '../img/about/sandra.jpg';
-import Guide2 from '../img/about/sandra.jpg';
+import GuideSintra from '../img/shop/sandra_1.jpg';
+import GuideSintraAlt from '../img/portfolio/sandra_2.jpg';
+import GuideLisbon from '../img/shop/sandra_3.jpg';
+import GuideLisbonAlt from '../img/portfolio/sandra_5.jpg';
 import Preset1 from '../img/about/sandra.jpg';
 import Preset2 from '../img/about/sandra.jpg';
 
+const GuideCard = ({
+  testId,
+  titleTestId,
+  buttonTestId,
+  title,
+  description,
+  cover,
+  accent,
+  buyLabel,
+  onBuy,
+  tilt = 'polaroid-tilt-none',
+}) => (
+  <article
+    data-test={testId}
+    testID={testId}
+    className="flex h-full flex-col items-center"
+  >
+    {/* Polaroid cover */}
+    <div className={`polaroid group w-full max-w-sm ${tilt}`}>
+      <div className="polaroid-photo aspect-[4/5]">
+        <img src={cover} alt={title} />
+      </div>
+      <p className="polaroid-caption">{title}</p>
+
+      {accent && (
+        <div className="absolute -bottom-2 -right-3 hidden w-[30%] rotate-[6deg] sm:block">
+          <div className="bg-white p-1.5 pb-6 shadow-polaroid">
+            <div className="aspect-square overflow-hidden bg-cream-dark">
+              <img
+                src={accent}
+                alt=""
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+
+    {/* Product details under the print */}
+    <div className="mt-8 flex w-full max-w-sm flex-1 flex-col items-start text-left">
+      <h3
+        data-test={titleTestId}
+        testID={titleTestId}
+        className="h3 mb-3 text-[1.85rem] lg:text-[2.1rem]"
+      >
+        {title}
+      </h3>
+      <p className="body-copy mb-7 line-clamp-4 flex-1">{description}</p>
+      <button
+        type="button"
+        data-test={buttonTestId}
+        testID={buttonTestId}
+        className="btn-primary"
+        onClick={onBuy}
+      >
+        {buyLabel}
+      </button>
+    </div>
+  </article>
+);
+
+const LegacyProductRow = ({
+  testId,
+  titleTestId,
+  buttonTestId,
+  title,
+  description,
+  image,
+  buyLabel,
+  onBuy,
+}) => (
+  <div
+    data-test={testId}
+    testID={testId}
+    className="grid items-center gap-6 rounded-[1.75rem] border border-cocoa/5 bg-cream/70 p-5 shadow-card sm:p-7 lg:grid-cols-2"
+  >
+    <div className="flex flex-col items-start text-left">
+      <h3
+        data-test={titleTestId}
+        testID={titleTestId}
+        className="h3 mb-4 text-[1.85rem] lg:text-[2.15rem]"
+      >
+        {title}
+      </h3>
+      <p className="body-copy mb-7 max-w-md">{description}</p>
+      <button
+        type="button"
+        data-test={buttonTestId}
+        testID={buttonTestId}
+        className="btn-primary"
+        onClick={onBuy}
+      >
+        {buyLabel}
+      </button>
+    </div>
+    <div className="polaroid polaroid-tilt-none mx-auto w-full max-w-xs">
+      <div className="polaroid-photo aspect-[4/5]">
+        <img src={image} alt={title} />
+      </div>
+    </div>
+  </div>
+);
+
 const Products = () => {
-  const bundlesImages = [Bundle1, Bundle2];
-  const guidesImages = [Guide1, Guide2];
-  const presetsImages = [Preset1, Preset2];
   const { t } = useTranslation();
+  const buyLabel = t('buy_now_button');
 
   const lemonSqueezyCheckout = (url) => {
     window.open(url, '_blank');
@@ -23,262 +126,162 @@ const Products = () => {
     <motion.section
       data-test="productPageSection"
       testID="productPageSection"
-      initial={{ opacity: 0, y: '100%' }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: '100%' }}
-      transition={{ transition1 }}
-      className="section lg:overflow-auto"
+      initial={fadeUp.initial}
+      animate={fadeUp.animate}
+      exit={fadeUp.exit}
+      transition={transition1}
+      className="page-shell"
     >
-      <div className="container mx-auto h-full relative">
-        <h1
-          data-test="productsPageTitle"
-          testID="productsPageTitle"
-          className="h1 text-pink text-center mt-6"
-        >
-          {t('products')}
-        </h1>
+      <div className="container-editorial">
+        <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-14 lg:pt-2">
+          <p className="eyebrow mb-4">{t('products_eyebrow')}</p>
+          <h1
+            data-test="productsPageTitle"
+            testID="productsPageTitle"
+            className="h1 mb-5 text-[2.85rem] sm:text-[3.5rem] lg:text-[4.5rem]"
+          >
+            {t('products')}
+          </h1>
+          <div className="divider-line mb-6" />
+          <p className="body-copy mx-auto max-w-lg">{t('shop_description_2')}</p>
+        </div>
 
-        <div className="w-24 h-1 bg-gradient-to-r from-pink to-transparent rounded-full mx-auto my-8" />
-
-        {/* Bundles Section */}
         <div hidden data-test="bundlesSection" testID="bundlesSection">
-          <h2
-            className="h2 text-green text-center mb-4"
-          >
-            {t('bundles_title')}
-          </h2>
-
-          {/* First Bundle Product */}
-          <div
-            data-test="bundleProduct1"
-            testID="bundleProduct1"
-            className="mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="bundleProductTitle1" testID="bundleProductTitle1" className="h3 text-center mb-2">
-                {t('bundles_subtitle_1')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('bundles_description')}</p>
-              <button
-                data-test="bundleCheckoutButton1"
-                testID="bundleCheckoutButton1"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-bundles-1')}
-              >
-                {t('buy_now_button')}
-              </button>
-            </div>
-
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {bundlesImages.map((image, i) => (
-                  <img
-                    key={`bundle1-${i}`}
-                    alt={`Bundle 1 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
-            </div>
-          </div>
-
-          {/* Second Bundle Product */}
-          <div
-            data-test="bundleProduct2"
-            testID="bundleProduct2"
-            className="mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="bundleProductTitle2" testID="bundleProductTitle2" className="h3 text-center mb-2">
-                {t('bundles_subtitle_2')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('bundles_description')}</p>
-              <button
-                data-test="bundleCheckoutButton2"
-                testID="bundleCheckoutButton2"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-bundles-2')}
-              >
-                {t('buy_now_button')}
-              </button>
-            </div>
-
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {bundlesImages.map((image, i) => (
-                  <img
-                    key={`bundle2-${i}`}
-                    alt={`Bundle 2 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
-            </div>
+          <h2 className="h2 text-center">{t('bundles_title')}</h2>
+          <div className="mt-10 space-y-8">
+            <LegacyProductRow
+              testId="bundleProduct1"
+              titleTestId="bundleProductTitle1"
+              buttonTestId="bundleCheckoutButton1"
+              title={t('bundles_subtitle_1')}
+              description={t('bundles_description')}
+              image={Bundle1}
+              buyLabel={buyLabel}
+              onBuy={() =>
+                lemonSqueezyCheckout(
+                  'https://your-lemonsqueezy-checkout-url-for-bundles-1'
+                )
+              }
+            />
+            <LegacyProductRow
+              testId="bundleProduct2"
+              titleTestId="bundleProductTitle2"
+              buttonTestId="bundleCheckoutButton2"
+              title={t('bundles_subtitle_2')}
+              description={t('bundles_description')}
+              image={Bundle2}
+              buyLabel={buyLabel}
+              onBuy={() =>
+                lemonSqueezyCheckout(
+                  'https://your-lemonsqueezy-checkout-url-for-bundles-2'
+                )
+              }
+            />
           </div>
         </div>
 
-        {/* Travel Guides Section */}
         <div data-test="guidesSection" testID="guidesSection">
-          <h2
-            data-test="guidesSectionTitle"
-            testID="guidesSectionTitle"
-            className="h2 text-green text-center mb-4"
-          >
-            {t('travel_guides_title')}
-          </h2>
-
-          {/* First Guide Product */}
-          <div
-            data-test="guideProduct1"
-            testID="guideProduct1"
-            className="lg:mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="guideProductTitle1" testID="guideProductTitle1" className="h3 text-primary text-center mb-2">
-                {t('travel_guide_1_title')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('travel_guide_1_description')}</p>
-              <button
-                data-test="guideCheckoutButton1"
-                testID="guideCheckoutButton1"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-guides-1')}
-              >
-                {t('buy_now_button')}
-              </button>
-            </div>
-
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {guidesImages.map((image, i) => (
-                  <img
-                    key={`guide1-${i}`}
-                    alt={`Guide 1 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
-            </div>
+          <div className="mb-10 text-center">
+            <p className="eyebrow mb-3">{t('featured_guides')}</p>
+            <h2
+              data-test="guidesSectionTitle"
+              testID="guidesSectionTitle"
+              className="h2 mb-0"
+            >
+              {t('travel_guides_title')}
+            </h2>
           </div>
 
-          {/* Second Guide Product */}
-          <div
-            data-test="guideProduct2"
-            testID="guideProduct2"
-            className="mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="guideProductTitle2" testID="guideProductTitle2" className="h3 text-primary text-center mb-2">
-                {t('travel_guide_2_title')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('travel_guide_2_description')}</p>
-              <button
-                data-test="guideCheckoutButton2"
-                testID="guideCheckoutButton2"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-guides-2')}
+          <div className="polaroid-board">
+            <div className="mx-auto grid max-w-4xl gap-12 md:grid-cols-2 md:gap-10 lg:gap-14">
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...transition1, delay: 0.12 }}
+                className="flex justify-center"
               >
-                {t('buy_now_button')}
-              </button>
-            </div>
+                <GuideCard
+                  testId="guideProduct1"
+                  titleTestId="guideProductTitle1"
+                  buttonTestId="guideCheckoutButton1"
+                  title={t('travel_guide_1_title')}
+                  description={t('travel_guide_1_description')}
+                  cover={GuideSintra}
+                  accent={GuideSintraAlt}
+                  buyLabel={buyLabel}
+                  tilt="polaroid-tilt-left"
+                  onBuy={() =>
+                    lemonSqueezyCheckout(
+                      'https://your-lemonsqueezy-checkout-url-for-guides-1'
+                    )
+                  }
+                />
+              </motion.div>
 
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {guidesImages.map((image, i) => (
-                  <img
-                    key={`guide2-${i}`}
-                    alt={`Guide 2 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ ...transition1, delay: 0.18 }}
+                className="flex justify-center"
+              >
+                <GuideCard
+                  testId="guideProduct2"
+                  titleTestId="guideProductTitle2"
+                  buttonTestId="guideCheckoutButton2"
+                  title={t('travel_guide_2_title')}
+                  description={t('travel_guide_2_description')}
+                  cover={GuideLisbon}
+                  accent={GuideLisbonAlt}
+                  buyLabel={buyLabel}
+                  tilt="polaroid-tilt-right"
+                  onBuy={() =>
+                    lemonSqueezyCheckout(
+                      'https://your-lemonsqueezy-checkout-url-for-guides-2'
+                    )
+                  }
+                />
+              </motion.div>
             </div>
           </div>
         </div>
 
-
-        {/* Lightroom Presets Section */}
         <div hidden data-test="presetsSection" testID="presetsSection">
           <h2
             data-test="presetsSectionTitle"
             testID="presetsSectionTitle"
-            className="h2 text-green text-center mb-4"
+            className="h2 text-center"
           >
             {t('lightroom_presets_title')}
           </h2>
-
-          {/* First Preset Product */}
-          <div
-            data-test="presetProduct1"
-            testID="presetProduct1"
-            className="mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="presetProductTitle1" testID="presetProductTitle1" className="h3 text-center mb-2">
-                {t('lightroom_presets_subtitle_1')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('lightroom_presets_description')}</p>
-              <button
-                data-test="presetCheckoutButton1"
-                testID="presetCheckoutButton1"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-presets-1')}
-              >
-                {t('buy_now_button')}
-              </button>
-            </div>
-
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {presetsImages.map((image, i) => (
-                  <img
-                    key={`preset1-${i}`}
-                    alt={`Preset 1 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
-            </div>
-          </div>
-
-          {/* Second Preset Product */}
-          <div
-            data-test="presetProduct2"
-            testID="presetProduct2"
-            className="mt-12 md:flex md:items-center md:justify-between"
-          >
-            <div className="md:w-1/2 md:pr-6">
-              <h3 data-test="presetProductTitle2" testID="presetProductTitle2" className="h3 text-center mb-2">
-                {t('lightroom_presets_subtitle_2')}
-              </h3>
-              <p className="text-center mb-6 lg:text-lg mx-6">{t('lightroom_presets_description')}</p>
-              <button
-                data-test="presetCheckoutButton2"
-                testID="presetCheckoutButton2"
-                className="btn rounded-xl bg-green mx-auto block mt-4"
-                onClick={() => lemonSqueezyCheckout('https://your-lemonsqueezy-checkout-url-for-presets-2')}
-              >
-                {t('buy_now_button')}
-              </button>
-            </div>
-
-            <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-              <Carousel autoSlide>
-                {presetsImages.map((image, i) => (
-                  <img
-                    key={`preset2-${i}`}
-                    alt={`Preset 2 - ${i + 1}`}
-                    className="rounded-3xl mb-1 p-2"
-                    src={image}
-                  />
-                ))}
-              </Carousel>
-            </div>
+          <div className="mt-10 space-y-8">
+            <LegacyProductRow
+              testId="presetProduct1"
+              titleTestId="presetProductTitle1"
+              buttonTestId="presetCheckoutButton1"
+              title={t('lightroom_presets_subtitle_1')}
+              description={t('lightroom_presets_description')}
+              image={Preset1}
+              buyLabel={buyLabel}
+              onBuy={() =>
+                lemonSqueezyCheckout(
+                  'https://your-lemonsqueezy-checkout-url-for-presets-1'
+                )
+              }
+            />
+            <LegacyProductRow
+              testId="presetProduct2"
+              titleTestId="presetProductTitle2"
+              buttonTestId="presetCheckoutButton2"
+              title={t('lightroom_presets_subtitle_2')}
+              description={t('lightroom_presets_description')}
+              image={Preset2}
+              buyLabel={buyLabel}
+              onBuy={() =>
+                lemonSqueezyCheckout(
+                  'https://your-lemonsqueezy-checkout-url-for-presets-2'
+                )
+              }
+            />
           </div>
         </div>
       </div>
