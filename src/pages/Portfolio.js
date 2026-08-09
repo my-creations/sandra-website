@@ -70,7 +70,6 @@ const Portfolio = () => {
                   <div className="polaroid-photo aspect-[4/5]">
                     <img src={item.src} alt={label} />
                   </div>
-                  <figcaption className="polaroid-caption">{label}</figcaption>
                 </motion.figure>
               );
             })}
