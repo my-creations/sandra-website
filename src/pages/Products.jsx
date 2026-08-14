@@ -10,16 +10,36 @@ import GuideLisbonAlt from '../img/portfolio/sandra_5.jpg';
 import Preset1 from '../img/about/sandra.jpg';
 import Preset2 from '../img/about/sandra.jpg';
 
+const PRODUCT_AVAILABILITY = {
+  PLANNED: 'planned',
+};
+
+const ProductAvailability = ({ testId, availability, plannedLabel }) => {
+  if (availability !== PRODUCT_AVAILABILITY.PLANNED) {
+    return null;
+  }
+
+  return (
+    <p
+      data-test={testId}
+      testID={testId}
+      className="inline-flex rounded-full border border-cocoa/15 bg-cream-dark/60 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-cocoa"
+    >
+      {plannedLabel}
+    </p>
+  );
+};
+
 const GuideCard = ({
   testId,
   titleTestId,
-  buttonTestId,
+  statusTestId,
   title,
   description,
   cover,
   accent,
-  buyLabel,
-  onBuy,
+  availability,
+  plannedLabel,
   tilt = 'polaroid-tilt-none',
 }) => (
   <article
@@ -59,15 +79,11 @@ const GuideCard = ({
         {title}
       </h3>
       <p className="body-copy mb-7 line-clamp-4 flex-1">{description}</p>
-      <button
-        type="button"
-        data-test={buttonTestId}
-        testID={buttonTestId}
-        className="btn-primary"
-        onClick={onBuy}
-      >
-        {buyLabel}
-      </button>
+      <ProductAvailability
+        testId={statusTestId}
+        availability={availability}
+        plannedLabel={plannedLabel}
+      />
     </div>
   </article>
 );
@@ -75,12 +91,12 @@ const GuideCard = ({
 const LegacyProductRow = ({
   testId,
   titleTestId,
-  buttonTestId,
+  statusTestId,
   title,
   description,
   image,
-  buyLabel,
-  onBuy,
+  availability,
+  plannedLabel,
 }) => (
   <div
     data-test={testId}
@@ -96,15 +112,11 @@ const LegacyProductRow = ({
         {title}
       </h3>
       <p className="body-copy mb-7 max-w-md">{description}</p>
-      <button
-        type="button"
-        data-test={buttonTestId}
-        testID={buttonTestId}
-        className="btn-primary"
-        onClick={onBuy}
-      >
-        {buyLabel}
-      </button>
+      <ProductAvailability
+        testId={statusTestId}
+        availability={availability}
+        plannedLabel={plannedLabel}
+      />
     </div>
     <div className="polaroid polaroid-tilt-none mx-auto w-full max-w-xs">
       <div className="polaroid-photo aspect-[4/5]">
@@ -116,11 +128,7 @@ const LegacyProductRow = ({
 
 const Products = () => {
   const { t } = useTranslation();
-  const buyLabel = t('buy_now_button');
-
-  const lemonSqueezyCheckout = (url) => {
-    window.open(url, '_blank');
-  };
+  const plannedLabel = t('planned_product_label');
 
   return (
     <motion.section
@@ -152,30 +160,22 @@ const Products = () => {
             <LegacyProductRow
               testId="bundleProduct1"
               titleTestId="bundleProductTitle1"
-              buttonTestId="bundleCheckoutButton1"
+              statusTestId="bundleProductStatus1"
               title={t('bundles_subtitle_1')}
               description={t('bundles_description')}
               image={Bundle1}
-              buyLabel={buyLabel}
-              onBuy={() =>
-                lemonSqueezyCheckout(
-                  'https://your-lemonsqueezy-checkout-url-for-bundles-1'
-                )
-              }
+              availability={PRODUCT_AVAILABILITY.PLANNED}
+              plannedLabel={plannedLabel}
             />
             <LegacyProductRow
               testId="bundleProduct2"
               titleTestId="bundleProductTitle2"
-              buttonTestId="bundleCheckoutButton2"
+              statusTestId="bundleProductStatus2"
               title={t('bundles_subtitle_2')}
               description={t('bundles_description')}
               image={Bundle2}
-              buyLabel={buyLabel}
-              onBuy={() =>
-                lemonSqueezyCheckout(
-                  'https://your-lemonsqueezy-checkout-url-for-bundles-2'
-                )
-              }
+              availability={PRODUCT_AVAILABILITY.PLANNED}
+              plannedLabel={plannedLabel}
             />
           </div>
         </div>
@@ -203,18 +203,14 @@ const Products = () => {
                 <GuideCard
                   testId="guideProduct1"
                   titleTestId="guideProductTitle1"
-                  buttonTestId="guideCheckoutButton1"
+                  statusTestId="guideProductStatus1"
                   title={t('travel_guide_1_title')}
                   description={t('travel_guide_1_description')}
                   cover={GuideSintra}
                   accent={GuideSintraAlt}
-                  buyLabel={buyLabel}
+                  availability={PRODUCT_AVAILABILITY.PLANNED}
+                  plannedLabel={plannedLabel}
                   tilt="polaroid-tilt-left"
-                  onBuy={() =>
-                    lemonSqueezyCheckout(
-                      'https://your-lemonsqueezy-checkout-url-for-guides-1'
-                    )
-                  }
                 />
               </motion.div>
 
@@ -227,18 +223,14 @@ const Products = () => {
                 <GuideCard
                   testId="guideProduct2"
                   titleTestId="guideProductTitle2"
-                  buttonTestId="guideCheckoutButton2"
+                  statusTestId="guideProductStatus2"
                   title={t('travel_guide_2_title')}
                   description={t('travel_guide_2_description')}
                   cover={GuideLisbon}
                   accent={GuideLisbonAlt}
-                  buyLabel={buyLabel}
+                  availability={PRODUCT_AVAILABILITY.PLANNED}
+                  plannedLabel={plannedLabel}
                   tilt="polaroid-tilt-right"
-                  onBuy={() =>
-                    lemonSqueezyCheckout(
-                      'https://your-lemonsqueezy-checkout-url-for-guides-2'
-                    )
-                  }
                 />
               </motion.div>
             </div>
@@ -257,30 +249,22 @@ const Products = () => {
             <LegacyProductRow
               testId="presetProduct1"
               titleTestId="presetProductTitle1"
-              buttonTestId="presetCheckoutButton1"
+              statusTestId="presetProductStatus1"
               title={t('lightroom_presets_subtitle_1')}
               description={t('lightroom_presets_description')}
               image={Preset1}
-              buyLabel={buyLabel}
-              onBuy={() =>
-                lemonSqueezyCheckout(
-                  'https://your-lemonsqueezy-checkout-url-for-presets-1'
-                )
-              }
+              availability={PRODUCT_AVAILABILITY.PLANNED}
+              plannedLabel={plannedLabel}
             />
             <LegacyProductRow
               testId="presetProduct2"
               titleTestId="presetProductTitle2"
-              buttonTestId="presetCheckoutButton2"
+              statusTestId="presetProductStatus2"
               title={t('lightroom_presets_subtitle_2')}
               description={t('lightroom_presets_description')}
               image={Preset2}
-              buyLabel={buyLabel}
-              onBuy={() =>
-                lemonSqueezyCheckout(
-                  'https://your-lemonsqueezy-checkout-url-for-presets-2'
-                )
-              }
+              availability={PRODUCT_AVAILABILITY.PLANNED}
+              plannedLabel={plannedLabel}
             />
           </div>
         </div>
