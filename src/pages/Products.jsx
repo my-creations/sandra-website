@@ -1,17 +1,17 @@
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { transition1, fadeUp } from '../transitions';
-import Bundle1 from '../img/about/sandra.jpg';
-import Bundle2 from '../img/about/sandra.jpg';
-import GuideSintra from '../img/shop/sandra_1.jpg';
-import GuideSintraAlt from '../img/portfolio/sandra_2.jpg';
-import GuideLisbon from '../img/shop/sandra_3.jpg';
-import GuideLisbonAlt from '../img/portfolio/sandra_5.jpg';
-import Preset1 from '../img/about/sandra.jpg';
-import Preset2 from '../img/about/sandra.jpg';
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { transition1, fadeUp } from "../transitions";
+import Bundle1 from "../img/about/sandra.jpg";
+import Bundle2 from "../img/about/sandra.jpg";
+import GuideSintra from "../img/shop/sandra_1.jpg";
+import GuideSintraAlt from "../img/portfolio/sandra_2.jpg";
+import GuideLisbon from "../img/shop/sandra_3.jpg";
+import GuideLisbonAlt from "../img/portfolio/sandra_5.jpg";
+import Preset1 from "../img/about/sandra.jpg";
+import Preset2 from "../img/about/sandra.jpg";
 
 const PRODUCT_AVAILABILITY = {
-  PLANNED: 'planned',
+  PLANNED: "planned",
 };
 
 const ProductAvailability = ({ testId, availability, plannedLabel }) => {
@@ -40,13 +40,9 @@ const GuideCard = ({
   accent,
   availability,
   plannedLabel,
-  tilt = 'polaroid-tilt-none',
+  tilt = "polaroid-tilt-none",
 }) => (
-  <article
-    data-test={testId}
-    testID={testId}
-    className="flex h-full flex-col items-center"
-  >
+  <article data-test={testId} testID={testId} className="flex h-full flex-col items-center">
     {/* Polaroid cover */}
     <div className={`polaroid group w-full max-w-sm ${tilt}`}>
       <div className="polaroid-photo aspect-[4/5]">
@@ -58,11 +54,7 @@ const GuideCard = ({
         <div className="absolute -bottom-2 -right-3 hidden w-[30%] rotate-[6deg] sm:block">
           <div className="bg-white p-1.5 pb-6 shadow-polaroid">
             <div className="aspect-square overflow-hidden bg-cream-dark">
-              <img
-                src={accent}
-                alt=""
-                className="h-full w-full object-cover object-center"
-              />
+              <img src={accent} alt="" className="h-full w-full object-cover object-center" />
             </div>
           </div>
         </div>
@@ -128,7 +120,7 @@ const LegacyProductRow = ({
 
 const Products = () => {
   const { t } = useTranslation();
-  const plannedLabel = t('planned_product_label');
+  const plannedLabel = t("planned_product_label");
 
   return (
     <motion.section
@@ -142,27 +134,27 @@ const Products = () => {
     >
       <div className="container-editorial">
         <div className="mx-auto mb-12 max-w-2xl text-center lg:mb-14 lg:pt-2">
-          <p className="eyebrow mb-4">{t('products_eyebrow')}</p>
+          <p className="eyebrow mb-4">{t("products_eyebrow")}</p>
           <h1
             data-test="productsPageTitle"
             testID="productsPageTitle"
             className="h1 mb-5 text-[2.85rem] sm:text-[3.5rem] lg:text-[4.5rem]"
           >
-            {t('products')}
+            {t("products")}
           </h1>
           <div className="divider-line mb-6" />
-          <p className="body-copy mx-auto max-w-lg">{t('shop_description_2')}</p>
+          <p className="body-copy mx-auto max-w-lg">{t("shop_description_2")}</p>
         </div>
 
         <div hidden data-test="bundlesSection" testID="bundlesSection">
-          <h2 className="h2 text-center">{t('bundles_title')}</h2>
+          <h2 className="h2 text-center">{t("bundles_title")}</h2>
           <div className="mt-10 space-y-8">
             <LegacyProductRow
               testId="bundleProduct1"
               titleTestId="bundleProductTitle1"
               statusTestId="bundleProductStatus1"
-              title={t('bundles_subtitle_1')}
-              description={t('bundles_description')}
+              title={t("bundles_subtitle_1")}
+              description={t("bundles_description")}
               image={Bundle1}
               availability={PRODUCT_AVAILABILITY.PLANNED}
               plannedLabel={plannedLabel}
@@ -171,8 +163,8 @@ const Products = () => {
               testId="bundleProduct2"
               titleTestId="bundleProductTitle2"
               statusTestId="bundleProductStatus2"
-              title={t('bundles_subtitle_2')}
-              description={t('bundles_description')}
+              title={t("bundles_subtitle_2")}
+              description={t("bundles_description")}
               image={Bundle2}
               availability={PRODUCT_AVAILABILITY.PLANNED}
               plannedLabel={plannedLabel}
@@ -182,13 +174,9 @@ const Products = () => {
 
         <div data-test="guidesSection" testID="guidesSection">
           <div className="mb-10 text-center">
-            <p className="eyebrow mb-3">{t('featured_guides')}</p>
-            <h2
-              data-test="guidesSectionTitle"
-              testID="guidesSectionTitle"
-              className="h2 mb-0"
-            >
-              {t('travel_guides_title')}
+            <p className="eyebrow mb-3">{t("featured_guides")}</p>
+            <h2 data-test="guidesSectionTitle" testID="guidesSectionTitle" className="h2 mb-0">
+              {t("travel_guides_title")}
             </h2>
           </div>
 
@@ -204,8 +192,8 @@ const Products = () => {
                   testId="guideProduct1"
                   titleTestId="guideProductTitle1"
                   statusTestId="guideProductStatus1"
-                  title={t('travel_guide_1_title')}
-                  description={t('travel_guide_1_description')}
+                  title={t("travel_guide_1_title")}
+                  description={t("travel_guide_1_description")}
                   cover={GuideSintra}
                   accent={GuideSintraAlt}
                   availability={PRODUCT_AVAILABILITY.PLANNED}
@@ -224,8 +212,8 @@ const Products = () => {
                   testId="guideProduct2"
                   titleTestId="guideProductTitle2"
                   statusTestId="guideProductStatus2"
-                  title={t('travel_guide_2_title')}
-                  description={t('travel_guide_2_description')}
+                  title={t("travel_guide_2_title")}
+                  description={t("travel_guide_2_description")}
                   cover={GuideLisbon}
                   accent={GuideLisbonAlt}
                   availability={PRODUCT_AVAILABILITY.PLANNED}
@@ -243,15 +231,15 @@ const Products = () => {
             testID="presetsSectionTitle"
             className="h2 text-center"
           >
-            {t('lightroom_presets_title')}
+            {t("lightroom_presets_title")}
           </h2>
           <div className="mt-10 space-y-8">
             <LegacyProductRow
               testId="presetProduct1"
               titleTestId="presetProductTitle1"
               statusTestId="presetProductStatus1"
-              title={t('lightroom_presets_subtitle_1')}
-              description={t('lightroom_presets_description')}
+              title={t("lightroom_presets_subtitle_1")}
+              description={t("lightroom_presets_description")}
               image={Preset1}
               availability={PRODUCT_AVAILABILITY.PLANNED}
               plannedLabel={plannedLabel}
@@ -260,8 +248,8 @@ const Products = () => {
               testId="presetProduct2"
               titleTestId="presetProductTitle2"
               statusTestId="presetProductStatus2"
-              title={t('lightroom_presets_subtitle_2')}
-              description={t('lightroom_presets_description')}
+              title={t("lightroom_presets_subtitle_2")}
+              description={t("lightroom_presets_description")}
               image={Preset2}
               availability={PRODUCT_AVAILABILITY.PLANNED}
               plannedLabel={plannedLabel}

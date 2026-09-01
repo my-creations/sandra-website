@@ -1,0 +1,7 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "sortTailwindcss": {
+    "config": "./tailwind.config.js"
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**", "build/**", "bun.lock"]
+}

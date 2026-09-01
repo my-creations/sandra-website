@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight } from 'react-feather';
+import { useState, useEffect, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "react-feather";
 
 export default function Carousel({
   children: slides,
@@ -11,12 +11,12 @@ export default function Carousel({
 
   const prev = useCallback(
     () => setCurr((value) => (value === 0 ? slideList.length - 1 : value - 1)),
-    [slideList.length]
+    [slideList.length],
   );
 
   const next = useCallback(
     () => setCurr((value) => (value === slideList.length - 1 ? 0 : value + 1)),
-    [slideList.length]
+    [slideList.length],
   );
 
   useEffect(() => {
@@ -68,9 +68,7 @@ export default function Carousel({
                   aria-label={`Go to slide ${i + 1}`}
                   onClick={() => setCurr(i)}
                   className={`h-2 rounded-full transition-all ${
-                    curr === i
-                      ? 'w-6 bg-cream-soft'
-                      : 'w-2 bg-cream-soft/50 hover:bg-cream-soft/80'
+                    curr === i ? "w-6 bg-cream-soft" : "w-2 bg-cream-soft/50 hover:bg-cream-soft/80"
                   }`}
                 />
               ))}

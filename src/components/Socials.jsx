@@ -1,6 +1,6 @@
-import React from 'react';
-import { ImInstagram } from 'react-icons/im';
-import { FaTiktok } from 'react-icons/fa';
+import React from "react";
+import { ImInstagram } from "react-icons/im";
+import { FaTiktok } from "react-icons/fa";
 
 const Socials = () => {
   return (

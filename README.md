@@ -37,28 +37,28 @@ Key product qualities:
 
 Because the site uses `HashRouter`, application routes appear after `/#/` in production.
 
-| Route | Purpose |
-| --- | --- |
-| `/#/` | Editorial homepage |
-| `/#/about` | Sandra's story and creator profile |
-| `/#/portfolio` | Curated visual portfolio |
-| `/#/portfolio/collaborations` | Selected brand collaborations |
-| `/#/shop` | Introduction to the digital-product catalog |
-| `/#/shop/products` | Travel-guide and product previews |
-| `/#/contact` | Inquiry form |
+| Route                         | Purpose                                     |
+| ----------------------------- | ------------------------------------------- |
+| `/#/`                         | Editorial homepage                          |
+| `/#/about`                    | Sandra's story and creator profile          |
+| `/#/portfolio`                | Curated visual portfolio                    |
+| `/#/portfolio/collaborations` | Selected brand collaborations               |
+| `/#/shop`                     | Introduction to the digital-product catalog |
+| `/#/shop/products`            | Travel-guide and product previews           |
+| `/#/contact`                  | Inquiry form                                |
 
 ## Technology
 
-| Area | Tools |
-| --- | --- |
-| UI | React 18, Tailwind CSS 3 |
-| Build | Vite 8 |
-| Navigation | React Router 7 |
-| Motion | Framer Motion |
-| Localization | i18next, react-i18next |
-| Forms | EmailJS, React Toastify |
-| Testing | Vitest |
-| Hosting | GitHub Pages, GitHub Actions |
+| Area         | Tools                        |
+| ------------ | ---------------------------- |
+| UI           | React 18, Tailwind CSS 3     |
+| Build        | Vite 8                       |
+| Navigation   | React Router 7               |
+| Motion       | Framer Motion                |
+| Localization | i18next, react-i18next       |
+| Forms        | EmailJS, React Toastify      |
+| Testing      | Vitest                       |
+| Hosting      | GitHub Pages, GitHub Actions |
 
 ## Getting started
 
@@ -91,6 +91,8 @@ bun run start
 Run the same essential checks used by continuous deployment:
 
 ```bash
+bun run lint
+bun run format:check
 bun run test
 bun run build
 ```
@@ -103,14 +105,18 @@ bun run preview
 
 ## Scripts
 
-| Command | Purpose |
-| --- | --- |
-| `bun run dev` | Start Vite on localhost with hot reload |
-| `bun run start` | Start Vite on all network interfaces |
-| `bun run test` | Run the Vitest suite once |
-| `bun run build` | Generate the production bundle in `dist/` |
-| `bun run preview` | Serve the generated bundle locally |
-| `bun run deploy` | Legacy manual publication to a `gh-pages` branch |
+| Command                | Purpose                                          |
+| ---------------------- | ------------------------------------------------ |
+| `bun run dev`          | Start Vite on localhost with hot reload          |
+| `bun run start`        | Start Vite on all network interfaces             |
+| `bun run lint`         | Lint the project with Oxlint                     |
+| `bun run lint:fix`     | Apply Oxlint safe fixes                          |
+| `bun run format`       | Format files with Oxfmt                          |
+| `bun run format:check` | Check Oxfmt formatting without writing files     |
+| `bun run test`         | Run the Vitest suite once                        |
+| `bun run build`        | Generate the production bundle in `dist/`        |
+| `bun run preview`      | Serve the generated bundle locally               |
+| `bun run deploy`       | Legacy manual publication to a `gh-pages` branch |
 
 The GitHub Actions workflow is the canonical deployment path. The manual `deploy` script is retained only as a fallback and should not be needed during normal development.
 
@@ -160,10 +166,11 @@ Use [`CONTEXT.md`](CONTEXT.md) before introducing product or business terminolog
 Every push to `main` triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The workflow:
 
 1. installs the locked dependencies with `bun install --frozen-lockfile`;
-2. runs the test suite;
-3. builds the Vite application;
-4. uploads `dist/` as a GitHub Pages artifact;
-5. deploys the artifact with the official Pages action.
+2. lints with Oxlint and checks formatting with Oxfmt;
+3. runs the test suite;
+4. builds the Vite application;
+5. uploads `dist/` as a GitHub Pages artifact;
+6. deploys the artifact with the official Pages action.
 
 The repository's GitHub Pages source must remain set to **GitHub Actions**.
 

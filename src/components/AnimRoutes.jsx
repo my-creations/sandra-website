@@ -1,13 +1,13 @@
-import React from 'react';
-import Home from '../pages/Home';
-import About from '../pages/About';
-import Portfolio from '../pages/Portfolio';
-import Shop from '../pages/Shop';
-import Contact from '../pages/Contact';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import Collaborations from '../pages/Collaborations';
-import Products from '../pages/Products';
+import React from "react";
+import Home from "../pages/Home";
+import About from "../pages/About";
+import Portfolio from "../pages/Portfolio";
+import Shop from "../pages/Shop";
+import Contact from "../pages/Contact";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import Collaborations from "../pages/Collaborations";
+import Products from "../pages/Products";
 
 const AnimRoutes = () => {
   const location = useLocation();

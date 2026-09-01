@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { IoMdClose } from 'react-icons/io';
-import { CgMenuRight } from 'react-icons/cg';
-import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { createPortal } from 'react-dom';
-import ChangeLanguage from './ChangeLanguage';
+import React, { useEffect, useState } from "react";
+import { IoMdClose } from "react-icons/io";
+import { CgMenuRight } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { createPortal } from "react-dom";
+import ChangeLanguage from "./ChangeLanguage";
 
 const MobileNav = () => {
   const { t } = useTranslation();
-  const location = useLocation();
   const [openMenu, setOpenMenu] = useState(false);
 
   const links = [
-    { to: '/', label: t('home') },
-    { to: '/about', label: t('about') },
-    { to: '/portfolio', label: t('portfolio') },
-    { to: '/shop', label: t('shop') },
-    { to: '/contact', label: t('contact') },
+    { to: "/", label: t("home") },
+    { to: "/about", label: t("about") },
+    { to: "/portfolio", label: t("portfolio") },
+    { to: "/shop", label: t("shop") },
+    { to: "/contact", label: t("contact") },
   ];
 
   useEffect(() => {
-    setOpenMenu(false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = openMenu ? 'hidden' : '';
+    document.body.style.overflow = openMenu ? "hidden" : "";
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [openMenu]);
 
@@ -56,15 +51,15 @@ const MobileNav = () => {
                 onClick={() => setOpenMenu(false)}
               />
               <motion.div
-                initial={{ x: '100%' }}
+                initial={{ x: "100%" }}
                 animate={{ x: 0 }}
-                exit={{ x: '100%' }}
+                exit={{ x: "100%" }}
                 transition={{ ease: [0.22, 1, 0.36, 1], duration: 0.45 }}
                 className="fixed right-0 top-0 z-50 flex h-full w-full max-w-sm flex-col overflow-y-auto bg-cream px-8 py-10 shadow-soft"
               >
                 <div className="mb-12 flex items-center justify-between">
                   <span className="font-primary text-2xl text-cocoa-dark">
-                    {t('sandra')} {t('camilo')}
+                    {t("sandra")} {t("camilo")}
                   </span>
                   <button
                     type="button"
@@ -97,7 +92,7 @@ const MobileNav = () => {
             </>
           )}
         </AnimatePresence>,
-        document.body
+        document.body,
       )}
     </nav>
   );

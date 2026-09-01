@@ -1,58 +1,51 @@
-import React, { useRef } from 'react';
-import emailjs from '@emailjs/browser';
-import { ToastContainer, toast } from 'react-toastify';
-import Sandra3 from '../img/portfolio/sandra_3.jpg';
-import 'react-toastify/dist/ReactToastify.css';
-import { motion } from 'framer-motion';
-import { transition1, fadeUp } from '../transitions';
-import { useTranslation } from 'react-i18next';
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
+import { ToastContainer, toast } from "react-toastify";
+import Sandra3 from "../img/portfolio/sandra_3.jpg";
+import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
+import { transition1, fadeUp } from "../transitions";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
   const { t } = useTranslation();
   const form = useRef();
 
   const emailSentToast = () =>
-    toast.success(t('email_sent_success_message'), {
-      position: 'bottom-center',
+    toast.success(t("email_sent_success_message"), {
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: 'light',
+      theme: "light",
     });
 
   const emailNotSentToast = () =>
-    toast.error(t('email_error_message'), {
-      position: 'bottom-center',
+    toast.error(t("email_error_message"), {
+      position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      theme: 'light',
+      theme: "light",
     });
 
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        'service_n34xk3l',
-        'template_reha55o',
-        form.current,
-        '7e0LUvjNuAd9HHdsW'
-      )
-      .then(
-        (result) => {
-          console.log(`Email Sent with Code ${result.text}`);
-          form.current.reset();
-          emailSentToast();
-        },
-        (error) => {
-          console.log(error.text);
-          emailNotSentToast();
-        }
-      );
+    emailjs.sendForm("service_n34xk3l", "template_reha55o", form.current, "7e0LUvjNuAd9HHdsW").then(
+      (result) => {
+        console.log(`Email Sent with Code ${result.text}`);
+        form.current.reset();
+        emailSentToast();
+      },
+      (error) => {
+        console.log(error.text);
+        emailNotSentToast();
+      },
+    );
   };
 
   return (
@@ -71,42 +64,38 @@ const Contact = () => {
             transition={{ ...transition1, delay: 0.08 }}
             className="flex flex-col items-start text-left lg:col-span-6"
           >
-            <p className="eyebrow mb-4">{t('contact_eyebrow')}</p>
+            <p className="eyebrow mb-4">{t("contact_eyebrow")}</p>
             <h1 className="h1 mb-5 text-[2.85rem] sm:text-[3.5rem] lg:text-[4.5rem]">
-              {t('contact_me_title')}
+              {t("contact_me_title")}
             </h1>
             <div className="divider-line mb-6 ml-0" />
-            <p className="body-copy mb-8 max-w-md">{t('contact_intro')}</p>
+            <p className="body-copy mb-8 max-w-md">{t("contact_intro")}</p>
 
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              className="flex w-full max-w-lg flex-col gap-y-2"
-            >
+            <form ref={form} onSubmit={sendEmail} className="flex w-full max-w-lg flex-col gap-y-2">
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
                 <input
                   className="input-editorial"
                   type="text"
                   name="user_name"
                   required
-                  placeholder={t('name_placeholder')}
+                  placeholder={t("name_placeholder")}
                 />
                 <input
                   className="input-editorial"
                   type="email"
                   name="user_email"
                   required
-                  placeholder={t('email_placeholder')}
+                  placeholder={t("email_placeholder")}
                 />
               </div>
               <textarea
                 className="input-editorial min-h-[120px] resize-y"
                 name="message"
                 required
-                placeholder={t('message_placeholder')}
+                placeholder={t("message_placeholder")}
               />
               <button type="submit" className="btn-primary mt-8 self-start">
-                {t('send_button')}
+                {t("send_button")}
               </button>
               <ToastContainer />
             </form>
