@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'PhotographSignature';
-  src: url('../src/fonts/Photograph\ Signature.ttf') format('truetype');
+  font-family: "PhotographSignature";
+  src: url("../src/fonts/Photograph\ Signature.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -16,7 +16,7 @@
   }
 
   body {
-    @apply overflow-x-hidden text-primary font-secondary bg-cream-soft antialiased;
+    @apply overflow-x-hidden bg-cream-soft font-secondary text-primary antialiased;
   }
 
   ::selection {
@@ -24,28 +24,28 @@
   }
 
   .h1 {
-    @apply font-primary font-medium text-[3.25rem] sm:text-[4.5rem] lg:text-[6.5rem] leading-[1.05] tracking-tight text-cocoa-dark;
+    @apply font-primary text-[3.25rem] font-medium leading-[1.05] tracking-tight text-cocoa-dark sm:text-[4.5rem] lg:text-[6.5rem];
   }
 
   .h2 {
-    @apply font-primary font-medium text-[2.25rem] lg:text-[3.5rem] leading-[1.1] tracking-tight text-cocoa-dark mb-4 lg:mb-8;
+    @apply mb-4 font-primary text-[2.25rem] font-medium leading-[1.1] tracking-tight text-cocoa-dark lg:mb-8 lg:text-[3.5rem];
   }
 
   .h3 {
-    @apply font-primary font-medium text-[1.85rem] lg:text-[2.5rem] leading-[1.15] tracking-tight text-cocoa-dark mb-3 lg:mb-6;
+    @apply mb-3 font-primary text-[1.85rem] font-medium leading-[1.15] tracking-tight text-cocoa-dark lg:mb-6 lg:text-[2.5rem];
   }
 
   .script-title {
-    font-family: 'PhotographSignature', cursive;
+    font-family: "PhotographSignature", cursive;
     @apply leading-[1.05] tracking-normal;
   }
 
   .section {
-    @apply relative w-full min-h-screen;
+    @apply relative min-h-screen w-full;
   }
 
   .page-shell {
-    @apply relative w-full min-h-[calc(100vh-7rem)] pb-16 pt-4 lg:pt-2;
+    @apply relative min-h-[calc(100vh-7rem)] w-full pb-16 pt-4 lg:pt-2;
   }
 
   .container-editorial {
@@ -53,19 +53,19 @@
   }
 
   .eyebrow {
-    @apply font-secondary text-[0.7rem] sm:text-xs uppercase tracking-brand text-sage-deep font-medium;
+    @apply font-secondary text-[0.7rem] font-medium uppercase tracking-brand text-sage-deep sm:text-xs;
   }
 
   .body-copy {
-    @apply text-base lg:text-lg leading-relaxed text-grey;
+    @apply text-base leading-relaxed text-grey lg:text-lg;
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm uppercase tracking-[0.16em] font-secondary font-medium transition-all duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-secondary text-sm font-medium uppercase tracking-[0.16em] transition-all duration-300;
   }
 
   .btn-primary {
-    @apply btn bg-cocoa text-cream-soft shadow-soft hover:bg-cocoa-dark hover:-translate-y-0.5;
+    @apply btn bg-cocoa text-cream-soft shadow-soft hover:-translate-y-0.5 hover:bg-cocoa-dark;
   }
 
   .btn-secondary {
@@ -73,7 +73,7 @@
   }
 
   .btn-blush {
-    @apply btn bg-blush-deep text-cream-soft shadow-soft hover:bg-cherry hover:-translate-y-0.5;
+    @apply btn bg-blush-deep text-cream-soft shadow-soft hover:-translate-y-0.5 hover:bg-cherry;
   }
 
   .chip {
@@ -146,7 +146,7 @@
   }
 
   .nav-link::after {
-    content: '';
+    content: "";
     @apply absolute -bottom-1 left-0 h-px w-0 bg-blush-deep transition-all duration-300;
   }
 

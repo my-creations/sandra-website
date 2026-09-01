@@ -1,25 +1,25 @@
-import React from 'react';
-import ChangeLanguage from './ChangeLanguage';
-import Socials from './Socials';
-import MobileNav from './MobileNav';
-import Logo from '../img/header/logorb.png';
-import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React from "react";
+import ChangeLanguage from "./ChangeLanguage";
+import Socials from "./Socials";
+import MobileNav from "./MobileNav";
+import Logo from "../img/header/logorb.png";
+import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const { t } = useTranslation();
   const location = useLocation();
 
   const links = [
-    { to: '/', label: t('home'), test: 'nav-link-home' },
-    { to: '/about', label: t('about'), test: 'nav-link-about' },
-    { to: '/portfolio', label: t('portfolio'), test: 'nav-link-portfolio' },
-    { to: '/shop', label: t('shop'), test: 'nav-link-shop' },
-    { to: '/contact', label: t('contact'), test: 'nav-link-contact' },
+    { to: "/", label: t("home"), test: "nav-link-home" },
+    { to: "/about", label: t("about"), test: "nav-link-about" },
+    { to: "/portfolio", label: t("portfolio"), test: "nav-link-portfolio" },
+    { to: "/shop", label: t("shop"), test: "nav-link-shop" },
+    { to: "/contact", label: t("contact"), test: "nav-link-contact" },
   ];
 
   const isActive = (path) => {
-    if (path === '/') return location.pathname === '/';
+    if (path === "/") return location.pathname === "/";
     return location.pathname.startsWith(path);
   };
 
@@ -33,7 +33,7 @@ const Header = () => {
             className="h-11 w-11 object-contain transition duration-300 group-hover:scale-105 lg:h-12 lg:w-12"
           />
           <span className="hidden font-primary text-xl tracking-wide text-cocoa-dark sm:block">
-            {t('sandra')} {t('camilo')}
+            {t("sandra")} {t("camilo")}
           </span>
         </Link>
 
@@ -43,9 +43,7 @@ const Header = () => {
               key={link.to}
               to={link.to}
               data-test={link.test}
-              className={`nav-link ${
-                isActive(link.to) ? 'text-cocoa-dark after:w-full' : ''
-              }`}
+              className={`nav-link ${isActive(link.to) ? "text-cocoa-dark after:w-full" : ""}`}
             >
               {link.label}
             </Link>
@@ -55,7 +53,7 @@ const Header = () => {
         <div className="flex items-center gap-5">
           <ChangeLanguage />
           <Socials />
-          <MobileNav />
+          <MobileNav key={location.pathname} />
         </div>
       </div>
     </header>

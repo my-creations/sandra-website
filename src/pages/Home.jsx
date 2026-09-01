@@ -1,18 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { transition1, fadeUp } from '../transitions';
-import HeroImg from '../img/home/sandra.jpg';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { transition1, fadeUp } from "../transitions";
+import HeroImg from "../img/home/sandra.jpg";
 
 const Home = () => {
   const { t } = useTranslation();
 
   const categories = [
-    t('category_travel'),
-    t('category_lifestyle'),
-    t('category_recipes'),
-    t('category_guides'),
+    t("category_travel"),
+    t("category_lifestyle"),
+    t("category_recipes"),
+    t("category_guides"),
   ];
 
   return (
@@ -43,7 +43,7 @@ const Home = () => {
               transition={{ ...transition1, delay: 0.05 }}
               className="eyebrow mb-6"
             >
-              {t('home_description')}
+              {t("home_description")}
             </motion.p>
 
             <motion.h1
@@ -52,8 +52,8 @@ const Home = () => {
               transition={{ ...transition1, delay: 0.1 }}
               className="script-title mb-2 text-[4.5rem] leading-none text-blush-deep sm:text-[5.75rem] lg:text-[6.5rem]"
             >
-              {t('sandra')}
-              <span className="mt-1 block lg:mt-2">{t('camilo')}</span>
+              {t("sandra")}
+              <span className="mt-1 block lg:mt-2">{t("camilo")}</span>
             </motion.h1>
 
             <motion.div
@@ -69,7 +69,7 @@ const Home = () => {
               transition={{ ...transition1, delay: 0.2 }}
               className="mb-4 max-w-md font-primary text-[1.65rem] font-medium leading-snug text-cocoa-dark sm:text-[1.9rem] lg:text-[2.15rem]"
             >
-              {t('home_headline')}
+              {t("home_headline")}
             </motion.p>
 
             <motion.p
@@ -78,7 +78,7 @@ const Home = () => {
               transition={{ ...transition1, delay: 0.26 }}
               className="body-copy mb-8 max-w-md text-balance"
             >
-              {t('home_subheadline')}
+              {t("home_subheadline")}
             </motion.p>
 
             <motion.ul
@@ -101,10 +101,10 @@ const Home = () => {
               className="flex flex-wrap items-center gap-3"
             >
               <Link to="/shop/products" className="btn-primary">
-                {t('home_cta_guides')}
+                {t("home_cta_guides")}
               </Link>
               <Link to="/about" className="btn-secondary">
-                {t('home_cta_about')}
+                {t("home_cta_about")}
               </Link>
             </motion.div>
           </div>
