@@ -2,3 +2,8 @@ node_modules/
 build/
 dist/
 .pi/
+
+# Verification skill runtime (keep evidence/.gitkeep; proofs are local)
+.cursor/skills/verify-sandra-website/.run/
+.cursor/skills/verify-sandra-website/evidence/**
+!.cursor/skills/verify-sandra-website/evidence/.gitkeep
