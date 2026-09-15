@@ -3,13 +3,13 @@ import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-/** Copy dist/index.html → dist/404.html so GitHub Pages serves the SPA for unknown paths. */
-function spaGithubPagesFallback() {
+/** Copy <outDir>/index.html → <outDir>/404.html so GitHub Pages serves the SPA for unknown paths. */
+export function spaGithubPagesFallback(outDir = "dist") {
   return {
     name: "spa-github-pages-fallback",
     closeBundle() {
-      const indexHtml = resolve("dist/index.html");
-      const notFoundHtml = resolve("dist/404.html");
+      const indexHtml = resolve(outDir, "index.html");
+      const notFoundHtml = resolve(outDir, "404.html");
       if (existsSync(indexHtml)) {
         copyFileSync(indexHtml, notFoundHtml);
       }

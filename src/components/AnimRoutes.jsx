@@ -9,27 +9,14 @@ import { AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Collaborations from "../pages/Collaborations";
 import Products from "../pages/Products";
-
-const BRAND = "Sandra Camilo";
-
-/** Pathname → i18n key for the page segment of document.title */
-const TITLE_KEYS = {
-  "/": null,
-  "/about": "about",
-  "/portfolio": "portfolio",
-  "/portfolio/collaborations": "collaborations",
-  "/shop": "shop",
-  "/shop/products": "products",
-  "/contact": "contact",
-};
+import { titleForPath } from "../utils/pageTitles";
 
 function useDocumentTitle() {
   const { pathname } = useLocation();
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    const key = TITLE_KEYS[pathname];
-    document.title = key ? `${t(key)} · ${BRAND}` : BRAND;
+    document.title = titleForPath(pathname, t);
   }, [pathname, t, i18n.language]);
 }
 
