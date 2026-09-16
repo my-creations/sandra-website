@@ -53,16 +53,16 @@ node .cursor/skills/verify-sandra-website/scripts/drive.mjs planned-products
 
 Stable handles (from components/pages):
 
-| Surface        | Handle                                                                 |
-| -------------- | ---------------------------------------------------------------------- |
-| App shell URL  | `/sandra-website/#/…` (HashRouter; `BASE_PATH=/sandra-website/`)       |
-| Desktop nav    | `[data-test="nav-link-home\|about\|portfolio\|shop\|contact"]`         |
-| Language       | Desktop header buttons with accessible name `/^en$/i` and `/^pt$/i`    |
-| Mobile menu    | `getByRole('button', { name: /Open menu/i })` (viewport &lt; lg)       |
-| Shop → catalog | `[data-test="visitProductsButton"]` → `#/shop/products`                |
-| Products page  | `[data-test="productPageSection"]`, `[data-test="productsPageTitle"]`  |
+| Surface        | Handle                                                                  |
+| -------------- | ----------------------------------------------------------------------- |
+| App shell URL  | `/sandra-website/#/…` (HashRouter; `BASE_PATH=/sandra-website/`)        |
+| Desktop nav    | `[data-test="nav-link-home\|about\|portfolio\|shop\|contact"]`          |
+| Language       | Desktop header buttons with accessible name `/^en$/i` and `/^pt$/i`     |
+| Mobile menu    | `getByRole('button', { name: /Open menu/i })` (viewport &lt; lg)        |
+| Shop → catalog | `[data-test="visitProductsButton"]` → `#/shop/products`                 |
+| Products page  | `[data-test="productPageSection"]`, `[data-test="productsPageTitle"]`   |
 | Guides         | `[data-test="guidesSection"]`, `guideProduct1/2`, `guideProductStatus*` |
-| Contact form   | `#/contact` — inputs `name="user_name\|user_email\|message"`           |
+| Contact form   | `#/contact` — inputs `name="user_name\|user_email\|message"`            |
 
 Drive the **user path** (nav links, language buttons, shop CTA). Do not call EmailJS from verification unless a feature recipe explicitly requires a send — default contact proof stops at fill + visible required fields (no submit to production EmailJS).
 
@@ -104,12 +104,12 @@ Run Cleanup after every verification session and after failed Launch/Drive itera
 
 All under `.cursor/skills/verify-sandra-website/scripts/` (executable):
 
-| Script       | Role                                                      |
-| ------------ | --------------------------------------------------------- |
-| `launch.sh`  | Start Vite; write `.run/state.env`; wait until ready      |
-| `doctor.sh`  | Read-only health of that instance                         |
-| `drive.mjs`  | Drive one mapped feature; write `evidence/<feature>/`     |
-| `cleanup.sh` | Stop Launch PID; keep evidence                            |
+| Script       | Role                                                  |
+| ------------ | ----------------------------------------------------- |
+| `launch.sh`  | Start Vite; write `.run/state.env`; wait until ready  |
+| `doctor.sh`  | Read-only health of that instance                     |
+| `drive.mjs`  | Drive one mapped feature; write `evidence/<feature>/` |
+| `cleanup.sh` | Stop Launch PID; keep evidence                        |
 
 Env knobs: `VERIFY_PORT` (default `5193`), `VERIFY_HOST` (default `127.0.0.1`), `VERIFY_RUN_DIR`, `VERIFY_READY_TIMEOUT_SEC` (default `90`).
 
