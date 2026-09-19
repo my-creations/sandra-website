@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import Sandra3 from "../img/portfolio/sandra_3.jpg";
@@ -6,10 +6,19 @@ import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import { transition1, fadeUp } from "../transitions";
 import { useTranslation } from "react-i18next";
+import { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } from "../config/emailjs";
+
+const MIN_SUBMIT_MS = 2500;
 
 const Contact = () => {
   const { t } = useTranslation();
   const form = useRef();
+  const mountedAt = useRef(0);
+
+  useEffect(() => {
+    mountedAt.current = Date.now();
+  }, []);
+  const [sending, setSending] = useState(false);
 
   const emailSentToast = () =>
     toast.success(t("email_sent_success_message"), {
@@ -22,8 +31,8 @@ const Contact = () => {
       theme: "light",
     });
 
-  const emailNotSentToast = () =>
-    toast.error(t("email_error_message"), {
+  const emailNotSentToast = (message) =>
+    toast.error(message || t("email_error_message"), {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -35,17 +44,40 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs.sendForm("service_n34xk3l", "template_reha55o", form.current, "7e0LUvjNuAd9HHdsW").then(
-      (result) => {
-        console.log(`Email Sent with Code ${result.text}`);
-        form.current.reset();
-        emailSentToast();
-      },
-      (error) => {
-        console.log(error.text);
-        emailNotSentToast();
-      },
-    );
+    if (sending) return;
+
+    const data = new FormData(form.current);
+    // Honeypot: bots fill it, humans never see it.
+    if (data.get("company")) {
+      form.current.reset();
+      emailSentToast();
+      return;
+    }
+    // Time-trap: instant submits are almost always bots.
+    if (Date.now() - mountedAt.current < MIN_SUBMIT_MS) {
+      emailNotSentToast(t("form_too_fast"));
+      return;
+    }
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      emailNotSentToast(t("email_config_missing"));
+      return;
+    }
+
+    setSending(true);
+    emailjs
+      .sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form.current, EMAILJS_PUBLIC_KEY)
+      .then(
+        () => {
+          form.current.reset();
+          mountedAt.current = Date.now();
+          setSending(false);
+          emailSentToast();
+        },
+        (error) => {
+          setSending(false);
+          emailNotSentToast(error?.text ? undefined : undefined);
+        },
+      );
   };
 
   return (
@@ -78,6 +110,9 @@ const Contact = () => {
                   type="text"
                   name="user_name"
                   required
+                  minLength={2}
+                  maxLength={80}
+                  autoComplete="name"
                   placeholder={t("name_placeholder")}
                 />
                 <input
@@ -85,6 +120,8 @@ const Contact = () => {
                   type="email"
                   name="user_email"
                   required
+                  maxLength={120}
+                  autoComplete="email"
                   placeholder={t("email_placeholder")}
                 />
               </div>
@@ -92,9 +129,21 @@ const Contact = () => {
                 className="input-editorial min-h-[120px] resize-y"
                 name="message"
                 required
+                minLength={10}
+                maxLength={2000}
                 placeholder={t("message_placeholder")}
               />
-              <button type="submit" className="btn-primary mt-8 self-start">
+              {/* Honeypot — hidden from humans, deadly for bots */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                placeholder={t("form_honeypot_label")}
+                className="pointer-events-none absolute h-0 w-0 opacity-0"
+              />
+              <button type="submit" disabled={sending} className="btn-primary mt-8 self-start">
                 {t("send_button")}
               </button>
               <ToastContainer />
@@ -109,7 +158,13 @@ const Contact = () => {
           >
             <div className="media-compose mx-auto max-w-md lg:ml-auto lg:mr-0 lg:max-w-lg">
               <div className="frame-soft aspect-[4/5]">
-                <img className="media-fill" src={Sandra3} alt="" />
+                <img
+                  className="media-fill"
+                  src={Sandra3}
+                  alt={t("contact_me_title")}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </motion.div>

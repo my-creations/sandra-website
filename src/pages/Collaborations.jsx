@@ -29,6 +29,8 @@ const CollaborationBlock = ({ title, href, images, reverse = false, cta, eyebrow
             className="aspect-[5/4] w-full object-cover object-center"
             alt={`${title} ${index + 1}`}
             src={image}
+            loading="lazy"
+            decoding="async"
           />
         ))}
       </Carousel>

@@ -46,7 +46,7 @@ const GuideCard = ({
     {/* Polaroid cover */}
     <div className={`polaroid group w-full max-w-sm ${tilt}`}>
       <div className="polaroid-photo aspect-[4/5]">
-        <img src={cover} alt={title} />
+        <img src={cover} alt={title} loading="lazy" decoding="async" />
       </div>
       <p className="polaroid-caption">{title}</p>
 
@@ -54,7 +54,13 @@ const GuideCard = ({
         <div className="absolute -bottom-2 -right-3 hidden w-[30%] rotate-[6deg] sm:block">
           <div className="bg-white p-1.5 pb-6 shadow-polaroid">
             <div className="aspect-square overflow-hidden bg-cream-dark">
-              <img src={accent} alt="" className="h-full w-full object-cover object-center" />
+              <img
+                src={accent}
+                alt={`${title} — detail`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover object-center"
+              />
             </div>
           </div>
         </div>
@@ -112,7 +118,7 @@ const LegacyProductRow = ({
     </div>
     <div className="polaroid polaroid-tilt-none mx-auto w-full max-w-xs">
       <div className="polaroid-photo aspect-[4/5]">
-        <img src={image} alt={title} />
+        <img src={image} alt={title} loading="lazy" decoding="async" />
       </div>
     </div>
   </div>

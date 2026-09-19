@@ -13,6 +13,8 @@ const EXPECTED_ROUTES = [
   "/shop",
   "/shop/products",
   "/contact",
+  "/privacy",
+  "/terms",
 ];
 
 function locs(xml) {
