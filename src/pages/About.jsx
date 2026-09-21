@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SandraImg from "../img/about/sandra.jpg";
+import SandraImg from "../img/about/sandra.webp";
 import { motion } from "framer-motion";
 import { transition1, fadeUp } from "../transitions";
 import { useTranslation } from "react-i18next";

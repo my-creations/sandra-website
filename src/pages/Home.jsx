@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { transition1, fadeUp } from "../transitions";
-import HeroImg from "../img/home/sandra.jpg";
+import HeroImg from "../img/home/sandra.webp";
 
 const Home = () => {
   const { t } = useTranslation();

@@ -1,10 +1,10 @@
 import React from "react";
-import Sandra1 from "../img/portfolio/sandra_1.jpg";
-import Sandra2 from "../img/portfolio/sandra_2.jpg";
-import Sandra3 from "../img/portfolio/sandra_3.jpg";
-import Sandra4 from "../img/portfolio/sandra_4.jpg";
-import Sandra5 from "../img/portfolio/sandra_5.jpg";
-import Sandra6 from "../img/portfolio/sandra_6.jpg";
+import Sandra1 from "../img/portfolio/sandra_1.webp";
+import Sandra2 from "../img/portfolio/sandra_2.webp";
+import Sandra3 from "../img/portfolio/sandra_3.webp";
+import Sandra4 from "../img/portfolio/sandra_4.webp";
+import Sandra5 from "../img/portfolio/sandra_5.webp";
+import Sandra6 from "../img/portfolio/sandra_6.webp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { transition1, fadeUp } from "../transitions";

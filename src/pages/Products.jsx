@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { transition1, fadeUp } from "../transitions";
-import Bundle1 from "../img/about/sandra.jpg";
-import Bundle2 from "../img/about/sandra.jpg";
-import GuideSintra from "../img/shop/sandra_1.jpg";
-import GuideSintraAlt from "../img/portfolio/sandra_2.jpg";
-import GuideLisbon from "../img/shop/sandra_3.jpg";
-import GuideLisbonAlt from "../img/portfolio/sandra_5.jpg";
-import Preset1 from "../img/about/sandra.jpg";
-import Preset2 from "../img/about/sandra.jpg";
+import Bundle1 from "../img/about/sandra.webp";
+import Bundle2 from "../img/about/sandra.webp";
+import GuideSintra from "../img/shop/sandra_1.webp";
+import GuideSintraAlt from "../img/portfolio/sandra_2.webp";
+import GuideLisbon from "../img/shop/sandra_3.webp";
+import GuideLisbonAlt from "../img/portfolio/sandra_5.webp";
+import Preset1 from "../img/about/sandra.webp";
+import Preset2 from "../img/about/sandra.webp";
 
 const PRODUCT_AVAILABILITY = {
   PLANNED: "planned",
