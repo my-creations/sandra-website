@@ -48,34 +48,46 @@ describe("robots.txt", () => {
 
 describe("social/meta tags in index.html", () => {
   const html = readFileSync(join(root, "index.html"), "utf8");
+  // oxfmt may split long meta tags across lines; normalize whitespace for asserts
+  const compact = html.replace(/\s+/g, " ");
+
+  function metaContent(attr, key) {
+    const re = new RegExp(
+      `${attr}="${key}"[^>]*content="([^"]+)"|content="([^"]+)"[^>]*${attr}="${key}"`,
+    );
+    const m = compact.match(re);
+    return m ? m[1] || m[2] : null;
+  }
 
   it("has Open Graph tags with absolute URLs", () => {
-    for (const tag of [
-      'property="og:type" content="website"',
+    expect(compact).toContain('property="og:type" content="website"');
+    expect(compact).toContain(
       'property="og:url" content="https://my-creations.github.io/sandra-website/"',
-      'property="og:title"',
-      'property="og:description"',
-      'property="og:image" content="https://my-creations.github.io/sandra-website/logo512.png"',
-    ]) {
-      expect(html, `index.html should contain ${tag}`).toContain(tag);
-    }
+    );
+    expect(compact).toContain('property="og:title"');
+    expect(compact).toContain('property="og:description"');
+    expect(metaContent("property", "og:image")).toBe(
+      "https://my-creations.github.io/sandra-website/og-default.png",
+    );
+    expect(metaContent("property", "og:image:width")).toBe("1200");
+    expect(metaContent("property", "og:image:height")).toBe("630");
   });
 
   it("has Twitter card tags", () => {
-    for (const tag of [
-      'name="twitter:card"',
-      'name="twitter:title"',
-      'name="twitter:description"',
-      'name="twitter:image"',
-    ]) {
-      expect(html, `index.html should contain ${tag}`).toContain(tag);
-    }
+    expect(metaContent("name", "twitter:card")).toBe("summary_large_image");
+    expect(compact).toContain('name="twitter:title"');
+    expect(compact).toContain('name="twitter:description"');
+    expect(metaContent("name", "twitter:image")).toBe(
+      "https://my-creations.github.io/sandra-website/og-default.png",
+    );
   });
 
-  it("references an og:image that exists in public/", () => {
-    const match = html.match(/property="og:image" content="([^"]+)"/);
-    expect(match).not.toBeNull();
-    const file = new URL(match[1]).pathname.replace("/sandra-website/", "");
+  it("references an og:image that exists in public/ and is not logo512", () => {
+    const url = metaContent("property", "og:image");
+    expect(url).not.toBeNull();
+    expect(url).not.toContain("logo512");
+    const file = new URL(url).pathname.replace("/sandra-website/", "");
+    expect(file).toBe("og-default.png");
     expect(existsSync(join(root, "public", file))).toBe(true);
   });
 });
