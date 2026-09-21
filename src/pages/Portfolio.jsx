@@ -64,7 +64,7 @@ const Portfolio = () => {
                   className={`polaroid group ${item.tilt} ${index >= 4 ? "hidden md:block" : ""}`}
                 >
                   <div className="polaroid-photo aspect-[4/5]">
-                    <img src={item.src} alt={label} />
+                    <img src={item.src} alt={label} loading="lazy" decoding="async" />
                   </div>
                 </motion.figure>
               );

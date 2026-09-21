@@ -131,6 +131,8 @@ const Home = () => {
                 <img
                   src={HeroImg}
                   alt="Sandra Camilo"
+                  fetchpriority="high"
+                  decoding="async"
                   className="absolute inset-0 h-full w-full object-cover object-[center_18%]"
                 />
                 <div

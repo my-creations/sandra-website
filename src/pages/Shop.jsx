@@ -61,7 +61,7 @@ const Shop = () => {
                 style={{ transitionDelay: `${index * 40}ms` }}
               >
                 <div className="polaroid-photo aspect-[3/4]">
-                  <img src={mood.src} alt={mood.label} />
+                  <img src={mood.src} alt={mood.label} loading="lazy" decoding="async" />
                 </div>
                 <figcaption className="polaroid-caption">{mood.label}</figcaption>
               </figure>

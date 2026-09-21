@@ -77,7 +77,7 @@
   }
 
   .chip {
-    @apply inline-flex items-center rounded-full border border-blush/50 bg-cream-soft/80 px-4 py-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-cocoa-light backdrop-blur-sm;
+    @apply inline-flex items-center rounded-full border border-blush/50 bg-cream-soft/80 px-4 py-1.5 text-[0.7rem] uppercase tracking-[0.18em] text-cocoa backdrop-blur-sm;
   }
 
   .frame-soft {
@@ -118,7 +118,7 @@
   }
 
   .polaroid-caption {
-    @apply absolute inset-x-0 bottom-0 flex h-11 items-center justify-center px-3 text-center font-primary text-sm tracking-wide text-cocoa-light sm:h-12 sm:text-base;
+    @apply absolute inset-x-0 bottom-0 flex h-11 items-center justify-center px-3 text-center font-primary text-sm tracking-wide text-cocoa sm:h-12 sm:text-base;
   }
 
   .polaroid-tilt-left {
@@ -142,7 +142,7 @@
   }
 
   .nav-link {
-    @apply relative text-sm uppercase tracking-[0.18em] text-cocoa-light transition-colors duration-300 hover:text-cocoa-dark;
+    @apply relative text-sm uppercase tracking-[0.18em] text-cocoa transition-colors duration-300 hover:text-cocoa-dark;
   }
 
   .nav-link::after {
@@ -155,7 +155,7 @@
   }
 
   .input-editorial {
-    @apply w-full border-0 border-b border-cocoa/20 bg-transparent py-4 font-secondary text-primary outline-none transition placeholder:text-cocoa-light/60 focus:border-blush-deep;
+    @apply w-full border-0 border-b border-cocoa/20 bg-transparent py-4 font-secondary text-primary outline-none transition placeholder:text-cocoa/60 focus:border-blush-deep;
   }
 }
 

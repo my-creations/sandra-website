@@ -82,6 +82,46 @@ export const resources = {
       lightroom_presets_description: "Enhance your photos with our Lightroom presets.",
       planned_product_label: "Coming soon",
       featured_guides: "Featured guides",
+      meta_description_home:
+        "Sandra Camilo — travel & lifestyle storytelling, photography, and digital travel guides.",
+      meta_description_about:
+        "Meet Sandra Camilo — creator behind soulful travel stories, slow living and visual storytelling.",
+      meta_description_portfolio:
+        "Portfolio of Sandra Camilo — travel photography, countryside light and coastal stories.",
+      meta_description_collaborations:
+        "Brand collaborations with Sandra Camilo — Santa Maria Bejuco and Chão do Rio stories.",
+      meta_description_shop:
+        "Digital travel guides by Sandra Camilo — insider tips, hidden gems and practical itineraries.",
+      meta_description_products:
+        "Travel guide previews — Sintra and Lisbon guides, coming soon with curated itineraries.",
+      meta_description_contact: "Contact Sandra Camilo — collaborations, press and travel notes.",
+      meta_description_privacy:
+        "Privacy policy — how sandra-website handles contact data and cookies.",
+      meta_description_terms:
+        "Terms & conditions — using sandra-website content, guides and contact form.",
+      privacy: "Privacy",
+      terms: "Terms",
+      privacy_eyebrow: "Your data",
+      privacy_title: "Privacy policy",
+      privacy_updated: "Last updated: September 2026",
+      terms_eyebrow: "The fine print",
+      terms_title: "Terms & conditions",
+      terms_updated: "Last updated: September 2026",
+      not_found_eyebrow: "Lost in the journey",
+      not_found_title: "Page not found",
+      not_found_copy:
+        "The page you are looking for moved or never existed. Let's get you back on the trail.",
+      not_found_home: "Back to home",
+      not_found_contact: "Contact me",
+      cookie_banner_copy:
+        "This site remembers your language and — only if you accept — loads privacy-friendly analytics. No ads, no selling data.",
+      cookie_accept: "Accept",
+      cookie_decline: "Decline",
+      footer_tagline: "Stories with soul, journeys with heart.",
+      footer_rights: "All rights reserved.",
+      form_honeypot_label: "Leave this field empty",
+      form_too_fast: "That was a little too fast — please try again.",
+      email_config_missing: "Contact form is not configured yet. Please try again later.",
     },
   },
   pt: {
@@ -164,6 +204,47 @@ export const resources = {
       lightroom_presets_description: "Melhora as tuas fotografias com os Presets do Lightroom.",
       planned_product_label: "Em breve",
       featured_guides: "Guias em destaque",
+      meta_description_home:
+        "Sandra Camilo — viagens, lifestyle, fotografia e guias de viagem digitais.",
+      meta_description_about:
+        "Conhece a Sandra Camilo — histórias de viagem com alma, slow living e storytelling visual.",
+      meta_description_portfolio:
+        "Portefólio de Sandra Camilo — fotografia de viagem, luz do campo e histórias da costa.",
+      meta_description_collaborations:
+        "Colaborações de marca com Sandra Camilo — histórias Santa Maria Bejuco e Chão do Rio.",
+      meta_description_shop:
+        "Guias de viagem digitais de Sandra Camilo — dicas, joias escondidas e itinerários práticos.",
+      meta_description_products:
+        "Previews dos guias — Sintra e Lisboa, em breve, com itinerários curados.",
+      meta_description_contact:
+        "Contacta a Sandra Camilo — colaborações, imprensa e notas de viagem.",
+      meta_description_privacy:
+        "Política de privacidade — como o sandra-website trata dados de contacto e cookies.",
+      meta_description_terms:
+        "Termos e condições — uso dos conteúdos, guias e formulário de contacto.",
+      privacy: "Privacidade",
+      terms: "Termos",
+      privacy_eyebrow: "Os teus dados",
+      privacy_title: "Política de privacidade",
+      privacy_updated: "Última atualização: setembro de 2026",
+      terms_eyebrow: "A letra pequena",
+      terms_title: "Termos e condições",
+      terms_updated: "Última atualização: setembro de 2026",
+      not_found_eyebrow: "Perdida na viagem",
+      not_found_title: "Página não encontrada",
+      not_found_copy: "A página que procuras mudou ou nunca existiu. Vamos voltar ao caminho.",
+      not_found_home: "Voltar ao início",
+      not_found_contact: "Contacta-me",
+      cookie_banner_copy:
+        "Este site recorda o teu idioma e — só se aceitares — carrega analytics privado. Sem anúncios, sem venda de dados.",
+      cookie_accept: "Aceitar",
+      cookie_decline: "Recusar",
+      footer_tagline: "Histórias com alma, viagens com coração.",
+      footer_rights: "Todos os direitos reservados.",
+      form_honeypot_label: "Deixa este campo vazio",
+      form_too_fast: "Foi um pouco rápido demais — tenta novamente.",
+      email_config_missing:
+        "O formulário de contacto ainda não está configurado. Tenta mais tarde.",
     },
   },
 };

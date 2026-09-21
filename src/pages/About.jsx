@@ -26,7 +26,13 @@ const About = () => {
           >
             <div className="media-compose max-w-md lg:max-w-none">
               <div className="frame-soft aspect-[4/5]">
-                <img src={SandraImg} alt={t("about_me_title")} className="media-fill" />
+                <img
+                  src={SandraImg}
+                  alt={t("about_me_title")}
+                  loading="lazy"
+                  decoding="async"
+                  className="media-fill"
+                />
               </div>
               <div className="mt-3 flex justify-center">
                 <span className="rounded-full bg-blush-soft px-4 py-1.5 text-[0.65rem] uppercase tracking-[0.16em] text-cocoa">
