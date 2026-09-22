@@ -2,14 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { transition1, fadeUp } from "../transitions";
 import Carousel from "../components/Carousel";
-import ChaoDoRio1 from "../img/collaborations/ChaoDoRio/ChaoDoRio1.JPEG";
-import ChaoDoRio2 from "../img/collaborations/ChaoDoRio/ChaoDoRio2.JPEG";
-import ChaoDoRio3 from "../img/collaborations/ChaoDoRio/ChaoDoRio3.JPEG";
-import ChaoDoRio4 from "../img/collaborations/ChaoDoRio/ChaoDoRio4.JPEG";
-import SantaMariaBejuco1 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco1.JPEG";
-import SantaMariaBejuco2 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco2.JPEG";
-import SantaMariaBejuco3 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco3.JPEG";
-import SantaMariaBejuco4 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco4.JPEG";
+import ChaoDoRio1 from "../img/collaborations/ChaoDoRio/ChaoDoRio1.webp";
+import ChaoDoRio2 from "../img/collaborations/ChaoDoRio/ChaoDoRio2.webp";
+import ChaoDoRio3 from "../img/collaborations/ChaoDoRio/ChaoDoRio3.webp";
+import ChaoDoRio4 from "../img/collaborations/ChaoDoRio/ChaoDoRio4.webp";
+import SantaMariaBejuco1 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco1.webp";
+import SantaMariaBejuco2 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco2.webp";
+import SantaMariaBejuco3 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco3.webp";
+import SantaMariaBejuco4 from "../img/collaborations/SantaMariaBejuco/SantaMariaBejuco4.webp";
 import { useTranslation } from "react-i18next";
 
 const CollaborationBlock = ({ title, href, images, reverse = false, cta, eyebrow, delay = 0 }) => (

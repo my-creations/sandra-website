@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
-import Sandra3 from "../img/portfolio/sandra_3.jpg";
+import Sandra3 from "../img/portfolio/sandra_3.webp";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 import { transition1, fadeUp } from "../transitions";
